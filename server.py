@@ -94,7 +94,7 @@ def show_text_data():
 @app.route('/image-data')
 def show_image_data():
     begin = math.floor(random.random()*900000)
-    cur = g.db.execute('select * from IMDS where ID>=' + str(begin) + 'and ID<=' + str(begin+10000) + ';').fetchall()
+    cur = g.db.execute('select * from IMDS where ID>=' + str(begin) + ' and ID<=' + str(begin+10000) + ';').fetchall()
     candidates = []
     for row in cur:
         if (random.random()<0.05):
