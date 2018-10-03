@@ -21,7 +21,7 @@ def visitPath(path):
     for file in list:
         _path = path + '/' + file
         if os.path.isfile(_path):
-            c.execute("insert into IMDS values (null, ?, ?, ?)", (file, "../" + _path, b'0'))
+            c.execute("insert into IMDS values (null, ?, ?, ?)", (file,  _path, b'0'))
         else:
             visitPath(_path)
 
