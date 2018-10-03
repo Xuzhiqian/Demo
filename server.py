@@ -28,7 +28,7 @@ def demonavbar():
         Subgroup(
             '相似度检测',
             View('Text Search', 'test_text_data'),
-            View('Image Search', 'test_image_data'),
+            View('Image Search', 'index'),
             View('Video Search', 'index'),
         ),
         Subgroup(
