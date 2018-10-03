@@ -11,9 +11,9 @@ c.execute("INSERT INTO DATASET (ID,NAME,TYPE,ADDRESS) \
       VALUES (2, 'Image Dataset', 'IMAGE', 'IMDS')")
 
 c.execute('''CREATE TABLE IMDS
-        (ID PRIMARY KEY INT NOT NULL,
+        (ID INTEGER PRIMARY KEY AUTOINCREMENT,
         NAME CHAR(20) NOT NULL,
-        ADDRESS char(50) NOT NULL,
+        ADDRESS char(80) NOT NULL,
         HASH BLOB NOT NULL);''')
 
 def visitPath(path):
@@ -21,7 +21,7 @@ def visitPath(path):
     for file in list:
         _path = path + '/' + file
         if os.path.isfile(_path):
-            c.execute("insert into IMDS values (?, ?, ?, ?)", ('', file, _path, b'0'))
+            c.execute("insert into IMDS values (null, ?, ?, ?)", (file, "../" + _path, b'0'))
         else:
             visitPath(_path)
 
