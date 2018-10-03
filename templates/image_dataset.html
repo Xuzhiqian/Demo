@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}IMAGE DATASET{% endblock %}
+
+{% block content %}
+<div class="container">
+	<h1>数据集展示</h1>
+  <p>这是flickr图片数据集，内含一百万张图片，由于加载时间过长，故随机选取100条数据展示</p>
+  <table class="table table-hover table-bordered table-striped" style="table-layout: fixed;word-wrap: break-word;">
+    <thead>
+      <tr>
+        <th>数据类别</th>
+        <th>文件名</th>
+        <th>值</th>
+        <th>哈希值</th>
+      </tr>
+    </thead>
+    <tbody>
+		{% for entry in data %}
+      <tr>
+		  <td>{{ entry[0] }}</td>
+		  <td>{{ entry[1] }}</td>
+		  <td><img src='{{ entry[2] }}' alt="None"></td>
+		  <td>{{ entry[3] }}</td>
+      </tr>
+	  {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

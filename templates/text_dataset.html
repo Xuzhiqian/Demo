@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}TEXT DATASET{% endblock %}
+
+{% block content %}
+<div class="container">
+	<h1>数据集展示</h1>
+  <p>这是Large-Movie-Review-Dataset，内含十万条电影评论，由于加载时间过长，故随机选取100条数据展示</p>
+  <table class="table table-hover table-bordered table-striped" style="table-layout: fixed;word-wrap: break-word;">
+    <thead>
+      <tr>
+        <th>数据类别</th>
+        <th>评论文件名</th>
+        <th>评论</th>
+        <th>哈希值</th>
+      </tr>
+    </thead>
+    <tbody>
+		{% for entry in data %}
+      <tr>
+		  <td>{{ entry[0] }}</td>
+		  <td>{{ entry[1] }}</td>
+		  <td>{{ entry[2] }}</td>
+		  <td>{{ entry[3] }}</td>
+      </tr>
+	  {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

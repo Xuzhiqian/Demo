@@ -1,0 +1,26 @@
+{% extends "bootstrap/base.html"  %}
+
+{% block title %}Fingerpringing Demo{% endblock %}
+{% block html_attribs %} lang="zh"{% endblock %}
+{% block head %}
+{{super()}}
+<meta name="author" content="Charles">
+<link rel="icon" type="image/ico" href="/static/favicon.ico">
+{% endblock %}
+
+{% block styles -%}
+    {{super()}}  {# do not forget to call super or Bootstrap's own stylesheets
+                    will disappear! #}
+    <link rel="stylesheet" type="text/css"
+          href="{{url_for('static', filename='mystyle.css')}}">
+{% endblock %}
+
+{% block navbar %}
+{{nav.demonavbar.render()}}
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  {% block page_content %}This is the base template.{% endblock %}
+</div>
+{% endblock %}
