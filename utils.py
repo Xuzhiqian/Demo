@@ -179,7 +179,7 @@ def getImageHashValues(sift_des, temp):
     :param sift_des: OpenCV SIFT 后得到的des值，它应该是[n, 128]的向量
     :return: numpy.ndarray datasketch 计算得到的Hash值
     """
-    if (type(sift_des)!=np.ndarray)
+    if type(sift_des)!=np.ndarray:
         print(temp, sift_des)
     assert type(sift_des)==np.ndarray, 'INPUT sift_des should be numpy.ndarray!'
     m = MinHash()
