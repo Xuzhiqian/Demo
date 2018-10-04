@@ -27,7 +27,7 @@ def visitPath(path):
         _path = path + '/' + file
         if os.path.isfile(_path):
             hashvalue = getImageHashValues(SIFT(_path))
-            c.execute("insert into IMDS values (null, ?, ?, ?)", (file,  getRelativePath(_path), hashvalue))
+            c.execute("insert into IMDS values (null, ?, ?, ?)", (file,  getRelativePath(_path), hashvalue.tobytes()))
         else:
             visitPath(_path)
 
