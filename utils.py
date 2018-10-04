@@ -173,18 +173,20 @@ def keyFrameExtraction(src, des):
         logger.error(Fore.RED + src + ': no such file.')
         return False
 
-def getImageHashValues(sift_des, temp):
+def getImageHashValues(sift_des):
     """
     利用datasketch得到图片的Hash值
     :param sift_des: OpenCV SIFT 后得到的des值，它应该是[n, 128]的向量
     :return: numpy.ndarray datasketch 计算得到的Hash值
     """
     if type(sift_des)!=np.ndarray:
-        print(temp, sift_des)
-    assert type(sift_des)==np.ndarray, 'INPUT sift_des should be numpy.ndarray!'
+        return 'error'
+    # assert type(sift_des)==np.ndarray, 'INPUT sift_des should be numpy.ndarray!'
     m = MinHash()
     for i in sift_des:
-        assert type(i)==np.ndarray, 'INPUT sift_des[i] should be numpy.ndarray!'
+        # assert type(i)==np.ndarray, 'INPUT sift_des[i] should be numpy.ndarray!'
+        if type(i)!=np.ndarray:
+            return 'error'
         m.update(i.tostring())
     return m.hashvalues
 
