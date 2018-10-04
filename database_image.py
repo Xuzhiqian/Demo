@@ -29,7 +29,7 @@ def visitPath(path):
         _path = path + '/' + file
         if os.path.isfile(_path):
             kpdes = SIFT(_path)
-            hashvalue = getImageHashValues(kpdes[1], _path)
+            hashvalue = getImageHashValues(kpdes[1])
             if hashvalue == 'error':
                 hashvalue = 0
             else:
