@@ -1,7 +1,8 @@
 #!/usr/bin/python
 import os
 import sqlite3
-import utils
+from utils import SIFT
+from utils import getImageHashValues
 
 conn = sqlite3.connect('datasets.db')
 print("Opened database successfully")
