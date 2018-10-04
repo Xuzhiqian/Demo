@@ -1,6 +1,7 @@
 #!/usr/bin/python
 import os
 import sqlite3
+import utils
 
 conn = sqlite3.connect('datasets.db')
 print("Opened database successfully")
@@ -16,15 +17,23 @@ c.execute('''CREATE TABLE IMDS
         ADDRESS char(80) NOT NULL,
         HASH BLOB NOT NULL);''')
 
+image_root = 'Image/mirflickr1m/images';
+def getRelativePath(path):
+    return path[path.find(image_root):]
+
 def visitPath(path):
     list = os.listdir(path)
     for file in list:
         _path = path + '/' + file
         if os.path.isfile(_path):
-            c.execute("insert into IMDS values (null, ?, ?, ?)", (file,  _path, b'0'))
+            hashvalue = getImageHashValues(SIFT(_path))
+            c.execute("insert into IMDS values (null, ?, ?, ?)", (file,  getRelativePath(_path), hashvalue))
         else:
             visitPath(_path)
 
-visitPath('Image/mirflickr1m/images')
+if os.path.exists(image_root):
+    visitPath(image_root)
+else:
+    visitPath('../' + image_root)
 conn.commit()
 conn.close()
