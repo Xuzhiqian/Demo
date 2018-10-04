@@ -15,12 +15,11 @@
       </tr>
     </thead>
     <tbody>
-      <img src='http://202.38.86.118:8898/view/Demo/Image/mirflickr1m/images/63/630059.jpg'/>
 		{% for entry in data %}
       <tr>
 		  <td>{{ entry[0] }}</td>
 		  <td>{{ entry[1] }}</td>
-		  <td><img src='{{ entry[2] }}' alt="None"/></td>
+		  <td><img src='../{{ entry[2] }}' alt="None"/></td>
 		  <td>{{ entry[3] }}</td>
       </tr>
 	  {% endfor %}
