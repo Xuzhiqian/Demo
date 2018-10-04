@@ -32,7 +32,7 @@ def visitPath(path):
             hashvalue = getImageHashValues(kpdes[1], _path)
             if hashvalue == 'error':
                 hashvalue = 0
-            else
+            else:
                 hashvalue = hashvalue.tobytes()
 
             c.execute("insert into IMDS values (null, ?, ?, ?)", (file,  getRelativePath(_path), hashvalue))
