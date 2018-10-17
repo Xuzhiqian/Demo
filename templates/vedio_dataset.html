@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}IMAGE DATASET{% endblock %}
+
+{% block content %}
+<div class="container">
+	<h1>数据集展示</h1>
+  <p>视频数据集展示</p>
+  <table class="table table-hover table-bordered table-striped" style="table-layout: fixed;word-wrap: break-word;">
+    <thead>
+      <tr>
+        <th>数据类别</th>
+        <th>文件名</th>
+        <th>值</th>
+        <th>哈希值</th>
+      </tr>
+    </thead>
+    <tbody>
+		{% for entry in data %}
+      <tr>
+		  <td>{{ entry[0] }}</td>
+		  <td>{{ entry[1] }}</td>
+		  <td><video src="/static/{{ entry[2] }}" width="2000" height="200" controls="controls">
+Your browser does not support the video tag.
+</video></td>
+		  <td>{{ entry[3] }}</td>
+      </tr>
+	  {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

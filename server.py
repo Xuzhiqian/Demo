@@ -35,7 +35,7 @@ def demonavbar():
             'Dataset',
             View('Text', 'show_text_data'),
             View('Image', 'show_image_data'),
-            View('Video', 'index'),
+            View('Video', 'show_vedio_data'),
         ),
     )
 
@@ -102,6 +102,11 @@ def show_image_data():
             if (len(candidates)==100):
                 break
     return render_template('image_dataset.html', data=candidates)
+
+@app.route('/vedio-data')
+def show_vedio_data():
+    pass:
+
 
 @app.route('/test-text-data/', methods=('GET', 'POST'))
 def test_text_data():

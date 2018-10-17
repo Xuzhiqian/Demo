@@ -11,17 +11,17 @@ c = conn.cursor()
 
 # images
 c.execute("INSERT INTO DATASET (ID,NAME,TYPE,ADDRESS) \
-      VALUES (2, 'Image Dataset', 'IMAGE', 'IMDS')")
+      VALUES (3, 'Vedio Dataset', 'VEDIO', 'VDS')")
 
-c.execute('''CREATE TABLE IMDS
+c.execute('''CREATE TABLE VDS
         (ID INTEGER PRIMARY KEY AUTOINCREMENT,
         NAME CHAR(20) NOT NULL,
         ADDRESS char(80) NOT NULL,
         HASH BLOB NOT NULL);''')
 
-image_root = 'Image/mirflickr1m/images';
+vedio_root = 'Vedio/moments-in-time/Moments_in_Time_Mini';
 def getRelativePath(path):
-    return path[path.find(image_root):]
+    return path[path.find(vedio_root):]
 
 def visitPath(path):
     list = os.listdir(path)
@@ -36,13 +36,13 @@ def visitPath(path):
              #   hashvalue = hashvalue.tobytes()
 
             # c.execute("insert into IMDS values (null, ?, ?, ?)", (file,  getRelativePath(_path), hashvalue))
-            c.execute("insert into IMDS values (null, ?, ?, ?)", (file,  getRelativePath(_path), 0))
+            c.execute("insert into VDS values (null, ?, ?, ?)", (file,  getRelativePath(_path), 0))
         else:
             visitPath(_path)
 
-if os.path.exists(image_root):
-    visitPath(image_root)
+if os.path.exists(vedio_root):
+    visitPath(vedio_root)
 else:
-    visitPath('../' + image_root)
+    visitPath('../' + vedio_root)
 conn.commit()
 conn.close()
