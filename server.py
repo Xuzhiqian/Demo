@@ -105,7 +105,15 @@ def show_image_data():
 
 @app.route('/vedio-data')
 def show_vedio_data():
-    pass:
+    begin = math.floor(random.random()*90000)
+    cur = g.db.execute('select * from vDS where ID>=' + str(begin) + ' and ID<=' + str(begin+1000) + ';').fetchall()
+    candidates = []
+    for row in cur:
+        if (random.random()<0.05):
+            candidates.append(row)
+            if (len(candidates)==20):
+                break
+    return render_template('vedio_dataset.html', data=candidates)
 
 
 @app.route('/test-text-data/', methods=('GET', 'POST'))
