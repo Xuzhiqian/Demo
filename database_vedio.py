@@ -19,7 +19,7 @@ c.execute('''CREATE TABLE VDS
         ADDRESS char(80) NOT NULL,
         HASH BLOB NOT NULL);''')
 
-vedio_root = 'Vedio/moments-in-time/Moments_in_Time_Mini';
+vedio_root = 'Video/moments-in-time/Moments_in_Time_Mini/training/';
 def getRelativePath(path):
     return path[path.find(vedio_root):]
 
