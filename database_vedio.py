@@ -11,7 +11,7 @@ c = conn.cursor()
 
 # images
 c.execute("INSERT INTO DATASET (ID,NAME,TYPE,ADDRESS) \
-      VALUES (3, 'Vedio Dataset', 'VEDIO', 'VDS')")
+      VALUES (3, 'Video Dataset', 'VIDEO', 'VDS')")
 
 c.execute('''CREATE TABLE VDS
         (ID INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -19,9 +19,9 @@ c.execute('''CREATE TABLE VDS
         ADDRESS char(80) NOT NULL,
         HASH BLOB NOT NULL);''')
 
-vedio_root = 'Video/moments-in-time/Moments_in_Time_Mini/training';
+video_root = 'Video/moments-in-time/Moments_in_Time_Mini/training';
 def getRelativePath(path):
-    return path[path.find(vedio_root):]
+    return path[path.find(video_root):]
 
 def visitPath(path):
     list = os.listdir(path)
@@ -40,9 +40,9 @@ def visitPath(path):
         else:
             visitPath(_path)
 
-if os.path.exists(vedio_root):
-    visitPath(vedio_root)
+if os.path.exists(video_root):
+    visitPath(video_root)
 else:
-    visitPath('../' + vedio_root)
+    visitPath('../' + video_root)
 conn.commit()
 conn.close()
