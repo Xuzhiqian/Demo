@@ -12,7 +12,7 @@ from markupsafe import escape
 import random
 import math
 import numpy as np
-import utils
+from utils import *
 
 # configuration
 DATABASE = './datasets.db'
@@ -107,7 +107,7 @@ def show_image_data():
         for c in candidates:
             kpdes = SIFT('/static/' + c[2]);
             c[3] = getImageHashValues(kpdes[1]).tobytes()
-    except e:
+    except Exception as e:
         print(e)
 
     return render_template('image_dataset.html', data=candidates)
