@@ -145,7 +145,7 @@ def test_text_data():
         elif(request.form['ControlSelect1']=='随机删除十分之一的单词'):
             after_data = utils.removeWords(data)
         elif(request.form['ControlSelect1']=='随机替换单词为反义词'):
-            after_data = utils.switchAntonyms(data)
+            after_data = utils.switchAntonyms(data,0.4)
         else:
             return render_template('search_text_form.html', error='操作选择错误')
         try:
