@@ -93,13 +93,13 @@ def show_text_data():
 
 @app.route('/image-data')
 def show_image_data():
-    begin = math.floor(random.random()*900000)
-    cur = g.db.execute('select * from IMDS where ID>=' + str(begin) + ' and ID<=' + str(begin+10000) + ';').fetchall()
+    begin = math.floor(random.random()*990000)
+    cur = g.db.execute('select * from IMDS where ID>=' + str(begin) + ' and ID<=' + str(begin+1000) + ';').fetchall()
     candidates = []
     for row in cur:
         if (random.random()<0.05):
             candidates.append(row)
-            if (len(candidates)==100):
+            if (len(candidates)==20):
                 break
 
     # 临时计算哈希
@@ -107,9 +107,7 @@ def show_image_data():
     for c in candidates:
         try:
             kpdes = SIFT('static/' + c[2]);
-            print(kpdes)
-            hashvalue = getImageHashValues(kpdes[1]).tobytes()
-            print(hashvalue)
+            c[3] = getImageHashValues(kpdes[1]).tobytes()
         except Exception as e:
             print(e)
 
