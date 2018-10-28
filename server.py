@@ -107,9 +107,9 @@ def show_image_data():
         for c in candidates:
             kpdes = SIFT('/static/' + c[2]);
             c[3] = getImageHashValues(kpdes[1]).tobytes()
+            print(c)
     except Exception as e:
         print(e)
-    print(candidates)
     return render_template('image_dataset.html', data=candidates)
 
 @app.route('/video-data')
