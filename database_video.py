@@ -16,8 +16,7 @@ c.execute("INSERT INTO DATASET (ID,NAME,TYPE,ADDRESS) \
 c.execute('''CREATE TABLE VDS
         (ID INTEGER PRIMARY KEY AUTOINCREMENT,
         NAME CHAR(20) NOT NULL,
-        ADDRESS char(80) NOT NULL,
-        HASH BLOB NOT NULL);''')
+        ADDRESS char(80) NOT NULL);''')
 
 video_root = 'Video/moments-in-time/Moments_in_Time_Mini/training';
 def getRelativePath(path):
@@ -28,15 +27,7 @@ def visitPath(path):
     for file in list:
         _path = path + '/' + file
         if os.path.isfile(_path):
-            # kpdes = SIFT(_path)
-            # hashvalue = getImageHashValues(kpdes[1])
-            # if hashvalue == 'error':
-               # hashvalue = 0
-            # else:
-             #   hashvalue = hashvalue.tobytes()
-
-            # c.execute("insert into IMDS values (null, ?, ?, ?)", (file,  getRelativePath(_path), hashvalue))
-            c.execute("insert into VDS values (null, ?, ?, ?)", (file,  getRelativePath(_path), 0))
+            c.execute("insert into VDS values (null, ?, ?)", (file,  getRelativePath(_path)))
         else:
             visitPath(_path)
 
