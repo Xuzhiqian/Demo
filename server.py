@@ -109,7 +109,7 @@ def show_image_data():
             c[3] = getImageHashValues(kpdes[1]).tobytes()
     except Exception as e:
         print(e)
-
+    print(candidates)
     return render_template('image_dataset.html', data=candidates)
 
 @app.route('/video-data')
