@@ -35,7 +35,7 @@ def demonavbar():
             'Dataset',
             View('Text', 'show_text_data'),
             View('Image', 'show_image_data'),
-            View('Video', 'show_vedio_data'),
+            View('Video', 'show_video_data'),
         ),
     )
 
@@ -103,8 +103,8 @@ def show_image_data():
                 break
     return render_template('image_dataset.html', data=candidates)
 
-@app.route('/vedio-data')
-def show_vedio_data():
+@app.route('/video-data')
+def show_video_data():
     begin = math.floor(random.random()*90000)
     cur = g.db.execute('select * from vDS where ID>=' + str(begin) + ' and ID<=' + str(begin+1000) + ';').fetchall()
     candidates = []
@@ -113,7 +113,7 @@ def show_vedio_data():
             candidates.append(row)
             if (len(candidates)==20):
                 break
-    return render_template('vedio_dataset.html', data=candidates)
+    return render_template('video_dataset.html', data=candidates)
 
 
 @app.route('/test-text-data/', methods=('GET', 'POST'))
