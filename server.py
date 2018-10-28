@@ -106,7 +106,7 @@ def show_image_data():
     print('start hash...')
     for c in candidates:
         try:
-            kpdes = SIFT('/static/' + c[2]);
+            kpdes = SIFT('static/' + c[2]);
             print(kpdes)
             hashvalue = getImageHashValues(kpdes[1]).tobytes()
             print(hashvalue)
