@@ -101,6 +101,15 @@ def show_image_data():
             candidates.append(row)
             if (len(candidates)==100):
                 break
+
+    # 临时计算哈希
+    try:
+        for c in candidates:
+            kpdes = SIFT('/static/' + c[2]);
+            c[3] = getImageHashValues(kpdes[1]).tobytes()
+    except e:
+        print(e)
+
     return render_template('image_dataset.html', data=candidates)
 
 @app.route('/video-data')
