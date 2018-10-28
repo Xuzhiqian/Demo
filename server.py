@@ -98,7 +98,7 @@ def show_image_data():
     candidates = []
     for row in cur:
         if (random.random()<0.05):
-            candidates.append(row)
+            candidates.append([row[0],row[1],row[2],row[3]])
             if (len(candidates)==20):
                 break
 
