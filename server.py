@@ -103,14 +103,16 @@ def show_image_data():
                 break
 
     # 临时计算哈希
-    try:
-        print('start hash...')
-        for c in candidates:
+    print('start hash...')
+    for c in candidates:
+        try:
             kpdes = SIFT('/static/' + c[2]);
-            c[3] = getImageHashValues(kpdes[1]).tobytes()
-            print(c)
-    except Exception as e:
-        print(e)
+            print(kpdes)
+            hashvalue = getImageHashValues(kpdes[1]).tobytes()
+            print(hashvalue)
+        except Exception as e:
+            print(e)
+
     return render_template('image_dataset.html', data=candidates)
 
 @app.route('/video-data')
