@@ -104,6 +104,7 @@ def show_image_data():
 
     # 临时计算哈希
     try:
+        print('start hash...')
         for c in candidates:
             kpdes = SIFT('/static/' + c[2]);
             c[3] = getImageHashValues(kpdes[1]).tobytes()
