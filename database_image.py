@@ -28,10 +28,13 @@ def visitPath(path):
     for file in list:
         _path = path + '/' + file
         if os.path.isfile(_path):
-            # kpdes = SIFT(_path)
-            # hashvalue = getImageHashValues(kpdes[1]).tobytes()
-            # c.execute("insert into IMDS values (null, ?, ?, ?)", (file,  getRelativePath(_path), hashvalue))
-            c.execute("insert into IMDS values (null, ?, ?, ?)", (file,  getRelativePath(_path), 0))
+            try:
+                kpdes = SIFT(_path)
+                hashvalue = getImageHashValues(kpdes[1]).tobytes()
+                c.execute("insert into IMDS values (null, ?, ?, ?)", (file,  getRelativePath(_path), hashvalue))
+            except Exception as e:
+                print(e)
+                print('Image :',_path)
         else:
             visitPath(_path)
 

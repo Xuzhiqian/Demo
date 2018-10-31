@@ -28,7 +28,7 @@ def demonavbar():
         Subgroup(
             '相似度检测',
             View('Text Search', 'test_text_data'),
-            View('Image Search', 'index'),
+            View('Image Search', 'test_image_data'),
             View('Video Search', 'index'),
         ),
         Subgroup(
@@ -145,7 +145,7 @@ def test_text_data():
         elif(request.form['ControlSelect1']=='随机删除十分之一的单词'):
             after_data = utils.removeWords(data)
         elif(request.form['ControlSelect1']=='随机替换单词为反义词'):
-            after_data = utils.switchAntonyms(data,0.4)
+            after_data = utils.switchAntonyms(data)
         else:
             return render_template('search_text_form.html', error='操作选择错误')
         try:
@@ -169,6 +169,9 @@ def test_text_data():
         return render_template(('result_text_form.html'), before=data, after=after_data, similiar=similiar_items, values=values, labels=labels, legend=legend)
     return render_template('search_text_form.html', error=None)
 
+@app.route('/test-image-data/', methods=('GET', 'POST'))
+def test_image_data():
+    pass
 
 @app.route('/dataset-query/', methods=('GET', 'POST'))
 def dataset_query():
