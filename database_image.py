@@ -37,7 +37,7 @@ def visitPath(path):
                 print(e,file=log)
                 print('Image :',_path,file=log)
                 print('Image :',_path)
-                c.execute("insert into IMDS values (null, ?, ?, ?", ('error_image', getRelativePath(_path), 0))
+                c.execute("insert into IMDS values (null, ?, ?, ?)", ('error_image', getRelativePath(_path), 0))
         else:
             visitPath(_path)
 
