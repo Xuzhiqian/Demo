@@ -20,6 +20,7 @@ c.execute('''CREATE TABLE IMDS
         HASH BLOB NOT NULL);''')
 
 image_root = 'Image/mirflickr1m/images';
+log = open("error_image.txt","w")
 def getRelativePath(path):
     return path[path.find(image_root):]
 
@@ -33,8 +34,10 @@ def visitPath(path):
                 hashvalue = getImageHashValues(kpdes[1]).tobytes()
                 c.execute("insert into IMDS values (null, ?, ?, ?)", (file,  getRelativePath(_path), hashvalue))
             except Exception as e:
-                print(e)
+                print(e,file=log)
+                print('Image :',_path,file=log)
                 print('Image :',_path)
+                c.execute("insert into IMDS values (null, ?, ?, ?", ('error_image', getRelativePath(_path), 0))
         else:
             visitPath(_path)
 
@@ -42,5 +45,6 @@ if os.path.exists(image_root):
     visitPath(image_root)
 else:
     visitPath('../' + image_root)
+log.close()
 conn.commit()
 conn.close()
