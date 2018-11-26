@@ -116,7 +116,7 @@ def show_image_data():
 @app.route('/video-data')
 def show_video_data():
     begin = math.floor(random.random()*90000)
-    cur = g.db.execute('select * from vDS where ID>=' + str(begin) + ' and ID<=' + str(begin+1000) + ';').fetchall()
+    cur = g.db.execute('select * from VDS where ID>=' + str(begin) + ' and ID<=' + str(begin+1000) + ';').fetchall()
     candidates = []
     for row in cur:
         if (random.random()<0.05):
