@@ -173,7 +173,7 @@ def test_text_data():
 def test_image_data():
     if request.method == 'POST':
         name = request.form['name']
-        cur = g.db.execute('select data from IMDS where name=:imgname', {'imgname':name})
+        cur = g.db.execute('select * from IMDS where name=:imgname', {'imgname':name})
         result = []
         for row in cur.fetchall():
             result.append(row)
