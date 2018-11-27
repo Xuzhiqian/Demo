@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}TEXT DATASET{% endblock %}
+
+{% block head %}
+{{super()}}
+{% endblock %}
+
+{% block content %}
+<div class="container">
+	<h1>处理前后</h1>
+  <table class="table table-hover table-bordered" style="table-layout: fixed;word-wrap: break-word;">
+    <thead>
+      <tr>
+        <th>处理前数据</th>
+        <th>处理后数据</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+		  <td><img src={{ before }}/></td>
+		  <td><img src={{ after }}/></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+{% endblock %}
