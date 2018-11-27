@@ -173,7 +173,7 @@ def test_text_data():
 def test_image_data():
     if request.method == 'POST':
         name = request.form['name']
-        cur = g.db.execute('select data from IMDS where NAME=:imgname', {'imgname':name})
+        cur = g.db.execute('select data from IMDS where name=:imgname', {'imgname':name})
         result = []
         for row in cur.fetchall():
             result.append(row)
@@ -182,6 +182,7 @@ def test_image_data():
                 return render_template('search_image_form.html',  error='输入查询不到记录')
             else:
                 return render_template('search_image_form.html', error='输入查询到了多个记录')
+        print(result[0])
         data  = '../' + result[0][1]
         after_data = 'static/test_image_temp' + result[0][0]
         if(request.form['ControlSelect1']=='随机剪切图片长宽的百分之0-25'):
