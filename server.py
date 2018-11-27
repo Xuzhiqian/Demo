@@ -228,7 +228,7 @@ def test_video_data():
         if(request.form['ControlSelect1']=='视频关键帧提取'):
             flag = utils.keyFrameExtraction(data, 'static/test_video_keyframe_temp')
         elif(request.form['ControlSelect1']=='随机视频切割(0-10秒)'):
-            flag = utils.cutVideo(data, 'static/test_video_cut_temp', result[0][1], 0, random.randint(1,10))
+            flag = utils.cutVideo(data, 'static/test_video_cut_temp', result[0][1])
             after_data_web = '/static/test_video_cut_temp/' + result[0][1]
         elif(request.form['ControlSelect1']=='视频合并（待续）'):
             return render_template('search_video_form.html', error='操作选择错误')
