@@ -12,7 +12,7 @@
 		    {{ error }}
 	   </div>
 	   {% endif %}
-<form action="{{ url_for('test_text_data') }}" method=post>
+<form action="{{ url_for('test_image_data') }}" method=post>
   <div class="form-group">
     <label for="name">数据文件名:</label>
     <input type="text" class="form-control" name="name" id="name">
@@ -20,7 +20,7 @@
   <div class="form-group">
     <label for="ControlSelect1">请选择处理数据的方式:</label>
     <select class="form-control" name="ControlSelect1" id="ControlSelect1">
-      <option>随机剪切图片长宽的0%-25%</option>
+      <option>随机剪切图片长宽的百分之0-25</option>
       <option>随机旋转图片长宽的0-45度</option>
       <option>横向合并图片（待续）</option>
     </select>
