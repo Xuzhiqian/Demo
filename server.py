@@ -235,10 +235,10 @@ def test_video_data():
         else:
             return render_template('search_video_form.html', error='操作选择错误')
         if flag:
-            try:
-                # 哈希计算           
-            except Exception as exc:
-                return render_template('search_video_form.html', err='Exception: '+str(exc))
+            # try:
+            #   哈希计算          
+            # except Exception as exc:
+            #   return render_template('search_video_form.html', err='Exception: '+str(exc))
             return render_template(('result_video_form.html'), before=before_data_web, after=after_data_web)
         else:
             return render_template('search_video_form.html', error='视频处理失败')
