@@ -29,7 +29,7 @@ def demonavbar():
             '相似度检测',
             View('Text Search', 'test_text_data'),
             View('Image Search', 'test_image_data'),
-            View('Video Search', 'index'),
+            View('Video Search', 'test_video_data'),
         ),
         Subgroup(
             'Dataset',
@@ -204,6 +204,45 @@ def test_image_data():
         else:
             return render_template('search_image_form.html', error='图片处理失败')
     return render_template('search_image_form.html', error=None)
+
+@app.route('/test-video-data/', methods=('GET', 'POST'))
+def test_video_data():
+    if request.method == 'POST':
+        name = request.form['name']
+        cur = g.db.execute('select * from VDS where name=:vname', {'vname':name})
+        result = []
+        for row in cur.fetchall():
+            result.append(row)
+        if(len(result)!=1):
+            if(len(result)==0):
+                return render_template('search_video_form.html',  error='输入查询不到记录')
+            else:
+                return render_template('search_video_form.html', error='输入查询到了多个记录')
+        data  = '../' + result[0][2]
+
+        # after_data = 'static/test_image_temp/' + result[0][1]
+        # before_data_web = '/static/' + result[0][2]
+        # after_data_web = '/static/test_image_temp/' + result[0][1]
+        before_data_web = '/static/' + result[0][2]
+        after_data_web = None
+        if(request.form['ControlSelect1']=='视频关键帧提取'):
+            flag = utils.keyFrameExtraction(data, 'static/test_video_keyframe_temp')
+        elif(request.form['ControlSelect1']=='随机视频切割(0-10秒)'):
+            flag = utils.cutVideo(data, 'static/test_video_cut_temp', result[0][1], 0, random.randint(1,10))
+            after_data_web = '/static/test_video_cut_temp/' + result[0][1]
+        elif(request.form['ControlSelect1']=='视频合并（待续）'):
+            return render_template('search_video_form.html', error='操作选择错误')
+        else:
+            return render_template('search_video_form.html', error='操作选择错误')
+        if flag:
+            try:
+                # 哈希计算           
+            except Exception as exc:
+                return render_template('search_video_form.html', err='Exception: '+str(exc))
+            return render_template(('result_video_form.html'), before=before_data_web, after=after_data_web)
+        else:
+            return render_template('search_video_form.html', error='视频处理失败')
+    return render_template('search_video_form.html', error=None)
 
 @app.route('/dataset-query/', methods=('GET', 'POST'))
 def dataset_query():
