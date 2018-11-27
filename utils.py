@@ -36,7 +36,7 @@ def cropImage(src, des, filename=None):
         im = Image.open(src)
         box = []
         for i in im.size:
-            l = random.randint(0, i * FIXED_RATIO)
+            l = random.randint(0, int(i * FIXED_RATIO))
             a = random.randint(0, l)
             b = i - l + a
             box += [a, b]
