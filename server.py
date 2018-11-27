@@ -182,13 +182,13 @@ def test_image_data():
                 return render_template('search_image_form.html',  error='输入查询不到记录')
             else:
                 return render_template('search_image_form.html', error='输入查询到了多个记录')
-        print(result[0])
-        data  = '../' + result[0][1]
-        after_data = 'static/test_image_temp' + result[0][0]
+        print(result[0][1],result[0][2])
+        data  = '../' + result[0][2]
+        after_data = 'static/test_image_temp' + result[0][1]
         if(request.form['ControlSelect1']=='随机剪切图片长宽的百分之0-25'):
-            flag = utils.cropImage(data, 'static/test_image_temp', result[0][0])
+            flag = utils.cropImage(data, 'static/test_image_temp', result[0][1])
         elif(request.form['ControlSelect1']=='随机旋转图片长宽的0-45度'):
-            flag = utils.rotateImage(data, 'static/test_image_temp', result[0][0])
+            flag = utils.rotateImage(data, 'static/test_image_temp', result[0][1])
         elif(request.form['ControlSelect1']=='横向合并图片（待续）'):
             return render_template('search_image_form.html', error='操作选择错误')
         else:
@@ -199,7 +199,7 @@ def test_image_data():
                 after_data_hash = utils.getImageHashValues(kpdes[1])            
             except Exception as exc:
                 return render_template('search_image_form.html', err='Exception: '+exc)
-            return render_template(('result_image_form.html'), before=result[0][1], after=after_data)
+            return render_template(('result_image_form.html'), before=result[0][2], after=after_data)
         else:
             return render_template('search_image_form.html', error='图片处理失败')
     return render_template('search_image_form.html', error=None)
