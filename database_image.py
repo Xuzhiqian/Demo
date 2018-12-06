@@ -63,7 +63,7 @@ def visitPath(path):
         else:
             visitPath(_path)
 
-KV = np.load('Image/mirflickr1m/centroid/0-iteration.npy')
+KV = np.load('../Image/mirflickr1m/centroid/0-iteration.npy')
 if os.path.exists(image_root):
     visitPath(image_root)
 else:
